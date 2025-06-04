@@ -284,3 +284,39 @@ String Firebdb::getLetterHowmany(){
   fd.clear();
   return howmany;  
 }
+
+String Firebdb::getJustName(String key){
+    FirebaseData fd;
+    String person = "";
+    String year = "";
+      String parentPath = "WappSongs/"+ key+"/Person"; 
+
+  Firebase.getString(fd, parentPath);
+  Serial.println(fd.errorReason());
+  /*while(!fd.dataAvailable() ){
+    Firebase.getString(fd, parentPath);
+    Serial.print("@");
+    delay(100);
+  }*/
+  
+  person = fd.stringData();
+   fd.closeFile();
+  fd.clear();
+  return person;
+}
+
+String Firebdb::getJustYear(String key){
+    FirebaseData fd;
+    String year = "";
+
+  String parentPath = "WappSongs/"+ key+"/Year"; 
+  delay(10);
+  //Serial.println(parentPath);
+  Firebase.getString(fd, parentPath);
+  year = fd.stringData();
+  delay(100);
+  
+  fd.closeFile();
+  fd.clear();
+  return year;
+}

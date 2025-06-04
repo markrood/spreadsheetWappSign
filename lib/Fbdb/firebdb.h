@@ -16,6 +16,8 @@ class Firebdb{
         void addFB(FirebaseData *fbo);
         //void getKeys();
         String getName(String key);
+        String getJustName(String key);        
+        String getJustYear(String key);        
         String getColors();
         String getLetterColor();
         String getLetterHowmany();
