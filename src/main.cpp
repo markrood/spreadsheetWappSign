@@ -6,9 +6,9 @@
 #include "firebdb.h"
 
 
-const char* ssid = "Mark";
-const char* password = "Frinov25";
-const char* scriptURL = "https://gist.githubusercontent.com/markrood/0daf51e2233a90464332a5bccda7767b/raw/115e2ccbee1f0c5ed3494eb3fc118da94421c265/wapp24";
+const char* ssid = "roods";
+const char* password = "Frinov25!+!";
+const char* scriptURL = "https://gist.githubusercontent.com/markrood/2e7656d9f6fbb6443ec1b7883bb775af/raw/1aa8a36faad714d374e881c0e2c6a668cd7f1b4e/gistfile1.txt";
 
 // For the following credentials, see examples/Authentications/SignInAsUser/EmailPassword/EmailPassword.ino
 
@@ -63,7 +63,7 @@ void fetchAndParseJson(const char* url) {
     Serial.println("Payload:");
     Serial.println(payload);
 
-    const size_t capacity = 8192;
+    const size_t capacity = 20480;
     DynamicJsonDocument doc(capacity);
 
     DeserializationError error = deserializeJson(doc, payload);
@@ -83,6 +83,7 @@ void fetchAndParseJson(const char* url) {
   String hash = generateUniqueKey(&titleArtist, 1);
   Serial.println("Generated Hash: "  +hash);
   //fb->writeKeyToDb(hash, na, yr);
+  //Serial.println("just wrote to db ");
   delay(100);
       }
     } else {
@@ -126,7 +127,7 @@ void setup() {
 
   // Since v4.4.x, BearSSL engine was used, the SSL buffer need to be set.
   // Large data transmission may require larger RX buffer, otherwise connection issue or data read time out can be occurred.
-  fbdo.setBSSLBufferSize(4096 /* Rx buffer size in bytes from 512 - 16384 */, 1024 /* Tx buffer size in bytes from 512 - 16384 */);
+  fbdo.setBSSLBufferSize(4096 /* Rx buffer size in bytes from 512 - 16384 */, 16384 /* Tx buffer size in bytes from 512 - 16384 */);
 
   // Or use legacy authenticate method
   // config.database_url = DATABASE_URL;
