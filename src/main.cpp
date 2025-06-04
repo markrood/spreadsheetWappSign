@@ -35,6 +35,7 @@ String who = "";
 Firebdb *fb;
 
 String generateUniqueKey(const String* strings, size_t count);
+long generateHash(String str);
 
 void fetchAndParseJson(const char* url) {
   HTTPClient http;
@@ -171,4 +172,12 @@ String generateUniqueKey(const String* strings, size_t count) {
   }
 
   return result;
+}
+
+long generateHash(String str){
+long result = 0;
+for (int i = 0; i < str.length(); i++){
+   result += pow(27, 15 - i - 1)*(1 + str.charAt(i) - 'a');
+}
+   return result;
 }
