@@ -6,9 +6,9 @@
 #include "firebdb.h"
 
 
-const char* ssid = "roods";
-const char* password = "Frinov25!+!";
-const char* scriptURL = "https://gist.githubusercontent.com/markrood/ae57102850c7686352328b190445da03/raw/da993986b74404d38fd2640d85f319fe3b4f6b9a/wapp5.json";
+const char* ssid = "Mark";
+const char* password = "Frinov25";
+const char* scriptURL = "https://gist.githubusercontent.com/markrood/0daf51e2233a90464332a5bccda7767b/raw/115e2ccbee1f0c5ed3494eb3fc118da94421c265/wapp24";
 
 // For the following credentials, see examples/Authentications/SignInAsUser/EmailPassword/EmailPassword.ino
 
@@ -73,10 +73,16 @@ void fetchAndParseJson(const char* url) {
         artist = row["Artist"] | "N/A";
         who = row["Who"] | "N/A";
         Serial.printf("Title: %s | Artist: %s | Who: %s\n", title.c_str(), artist.c_str(), who.c_str());
-          String titleArtist = title+" "+artist;
+          const String titleArtist = title+" "+artist;
+  long oldHash = generateHash(titleArtist);
+  String strOldHash = String(oldHash);
+  String na =fb->getJustName(strOldHash);
+  Serial.println("name is "+na);
+  String yr = fb->getJustYear(strOldHash);
+  Serial.println("year is "+yr);
   String hash = generateUniqueKey(&titleArtist, 1);
   Serial.println("Generated Hash: "  +hash);
-  fb->writeKeyToDb(hash, "Jeff");
+  //fb->writeKeyToDb(hash, na, yr);
   delay(100);
       }
     } else {
