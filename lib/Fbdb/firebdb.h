@@ -21,7 +21,7 @@ class Firebdb{
         String getColors();
         String getLetterColor();
         String getLetterHowmany();
-        void writeKeyToDb(String key, String name);
+        void writeKeyToDb(String key, String name,String year);
         String getSunset();
     private:
         FirebaseData *fbdo;

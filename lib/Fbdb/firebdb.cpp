@@ -50,12 +50,12 @@ void Firebdb::addFB(FirebaseData *fbo){
 
 }
 
-void Firebdb::writeKeyToDb(String key, String name){  
+void Firebdb::writeKeyToDb(String key, String name, String year){  
   FirebaseData fd;
       String parentPath = "Songs/"+ key; 
   FirebaseJson json;
   json.toString(Serial, true);
-  json.set("Year", "2005");
+  json.set("Year", year);
   json.set("Person", name);
   Firebase.setJSON(fd,parentPath,json);
     fd.closeFile();
